@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PG_Management_MongoDB.Services;
 
 namespace PG_Management_MongoDB
 {
@@ -24,6 +25,7 @@ namespace PG_Management_MongoDB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<TenantServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
