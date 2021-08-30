@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PG_Management_MongoDB.Models;
 using PG_Management_MongoDB.Services;
 
 namespace PG_Management_MongoDB.Controllers
@@ -37,17 +38,21 @@ namespace PG_Management_MongoDB.Controllers
         // POST: Tenants/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(Tenant tenant)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    _tenantServices.Create(tenant);
+                    return RedirectToAction(nameof(Index));
+                }
 
-                return RedirectToAction(nameof(Index));
+                return View(tenant);
             }
             catch
             {
-                return View();
+                return BadRequest();
             }
         }
 

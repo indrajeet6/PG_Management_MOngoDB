@@ -31,7 +31,7 @@ namespace PG_Management_MongoDB.Models
         public string Phone { get; set; }
 
         [BsonElement("Tenant_Paid_Status")]
-        [DisplayName("Rent Paid Status")]
+        [DisplayName("Rent Paid?")]
         public BsonBoolean PaidStatus { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+@model PG_Management_MongoDB.Models.Tenant
+
+@{
+    ViewBag.Title = "Add New Tenant";
+    Layout = "_Layout";
+}
+<h2>Add New Tenant</h2>
+
+< style="text-align: center">
+@using (Html.BeginForm("Create", "Tenants",FormMethod.Post))
+{
+    <div>
+        <div>
+            @Html.LabelFor(tenant => tenant.Name)
+        </div>
+        <div>
+            @Html.TextBoxFor(tenant => tenant.Name)
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.Phone)
+        </div>
+        <div>
+            @Html.TextBoxFor(tenant => tenant.Phone)
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.Address)
+        </div>
+        <div>
+            @Html.TextAreaFor(tenant => tenant.Address)
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.PaidStatus)
+        </div>
+        <div>
+            @Html.CheckBoxFor(tenant => tenant.PaidStatus.AsBoolean,new { onchange = "this.value = this.checked;"})
+            
+        </div>
+        <input type="submit" value="Add Tenant" id="btnSubmit" />
+    </div>
+}
