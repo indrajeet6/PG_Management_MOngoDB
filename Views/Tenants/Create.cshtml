@@ -6,10 +6,10 @@
 }
 <h2>Add New Tenant</h2>
 
-< style="text-align: center">
+
 @using (Html.BeginForm("Create", "Tenants",FormMethod.Post))
 {   
-    <div>
+    <div style="text-align: center;">
         <div>
             @Html.LabelFor(tenant => tenant.Name)
         </div>
@@ -32,7 +32,7 @@
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
         <div>
-            @Html.CheckBoxFor(tenant => tenant.PaidStatus.AsBoolean)
+            @Html.CheckBoxFor(tenant => tenant.PaidStatus.ToBoolean())
             
         </div>
         <input type="submit" value="Add Tenant" id="btnSubmit" />
