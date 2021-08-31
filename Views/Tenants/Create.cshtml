@@ -8,7 +8,7 @@
 
 < style="text-align: center">
 @using (Html.BeginForm("Create", "Tenants",FormMethod.Post))
-{
+{   
     <div>
         <div>
             @Html.LabelFor(tenant => tenant.Name)
@@ -32,7 +32,7 @@
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
         <div>
-            @Html.CheckBoxFor(tenant => tenant.PaidStatus.AsBoolean,new { onchange = "this.value = this.checked;"})
+            @Html.CheckBoxFor(tenant => tenant.PaidStatus.AsBoolean)
             
         </div>
         <input type="submit" value="Add Tenant" id="btnSubmit" />
