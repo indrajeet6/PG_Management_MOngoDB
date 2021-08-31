@@ -32,8 +32,7 @@
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
         <div>
-            @Html.CheckBoxFor(tenant => tenant.PaidStatus.ToBoolean())
-            
+            @Html.CheckBoxFor(tenant => tenant.PaidStatus.AsBoolean)
         </div>
         <input type="submit" value="Add Tenant" id="btnSubmit" />
     </div>
