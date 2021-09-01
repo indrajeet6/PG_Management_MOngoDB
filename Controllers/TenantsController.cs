@@ -44,6 +44,21 @@ namespace PG_Management_MongoDB.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    try
+                    {
+                        if(String.Compare(tenant.PaidStatusValue.ToString(),"Yes")==0)
+                        {
+                            tenant.PaidStatus = true;
+                        }
+                        else
+                        {
+                            tenant.PaidStatus = false;
+                        }
+                    }
+                    catch
+                    {
+                        tenant.PaidStatus = false;
+                    }
                     _tenantServices.Create(tenant);
                     return RedirectToAction(nameof(Index));
                 }

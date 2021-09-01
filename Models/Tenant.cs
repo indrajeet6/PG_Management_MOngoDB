@@ -4,7 +4,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace PG_Management_MongoDB.Models
 {
     public class Tenant
@@ -33,5 +32,9 @@ namespace PG_Management_MongoDB.Models
         [BsonElement("Tenant_Paid_Status")]
         [DisplayName("Rent Paid?")]
         public BsonBoolean PaidStatus { get; set; }
+        
+        [Microsoft.AspNetCore.Mvc.BindProperty]
+        public string PaidStatusValue{get;set;}
+        public static string[] PaidStatusValues = new [] {"Yes","No"};
     }
 }

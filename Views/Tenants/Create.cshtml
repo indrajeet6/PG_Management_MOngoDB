@@ -32,7 +32,10 @@
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
         <div>
-            @Html.CheckBoxFor(tenant => tenant.PaidStatus.AsBoolean)
+            @foreach (var value in Tenant.PaidStatusValues)
+            {
+                @Html.RadioButtonFor(tenant => tenant.PaidStatusValue,value) @value <br/>
+            }
         </div>
         <input type="submit" value="Add Tenant" id="btnSubmit" />
     </div>
