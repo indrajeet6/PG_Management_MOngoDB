@@ -1,0 +1,42 @@
+@model PG_Management_MongoDB.Models.Tenant
+
+@{
+    ViewBag.Title = "Modify Tenant";
+    Layout = "_Layout";
+}
+<h2>Modify Existing Tenant</h2>
+
+
+@using (Html.BeginForm("Edit", "Tenants",FormMethod.Post))
+{   
+    <div style="text-align: center;">
+        <div>
+            @Html.LabelFor(tenant => tenant.Name)
+        </div>
+        <div>
+            @Html.TextBoxFor(tenant => tenant.Name)
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.Phone)
+        </div>
+        <div>
+            @Html.TextBoxFor(tenant => tenant.Phone)
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.Address)
+        </div>
+        <div>
+            @Html.TextAreaFor(tenant => tenant.Address)
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.PaidStatus)
+        </div>
+        <div>
+            @foreach (var value in Tenant.PaidStatusValues)
+            {
+                @Html.RadioButtonFor(tenant => tenant.PaidStatusValue,value) @value <br/>
+            }
+        </div>
+        <input type="submit" value="Modify Tenant" id="btnSubmit" />
+    </div>
+}

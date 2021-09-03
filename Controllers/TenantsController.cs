@@ -72,21 +72,58 @@ namespace PG_Management_MongoDB.Controllers
         }
 
         // GET: Tenants/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(string id)
         {
-            return View();
+            
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var tenant = _tenantServices.Get(id.ToString());
+            if(tenant==null)
+            {
+                return NotFound();
+            }
+            return View(tenant);
         }
 
         // POST: Tenants/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string id, Tenant tenant)
         {
             try
             {
-                // TODO: Add update logic here
+                if(id!=tenant.Id)
+                {
+                    return NotFound();
+                }
+                if(ModelState.IsValid)
+                {
+                    try
+                    {
+                        if(String.Compare(tenant.PaidStatusValue.ToString(),"Yes")==0)
+                        {
+                            tenant.PaidStatus = true;
+                        }
+                        else
+                        {
+                            tenant.PaidStatus = false;
+                        }
+                    }
+                    catch
+                    {
+                        tenant.PaidStatus = false;
+                    }
+                    _tenantServices.Update(id.ToString(),tenant);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View(tenant);
+                }
 
-                return RedirectToAction(nameof(Index));
+                
             }
             catch
             {
