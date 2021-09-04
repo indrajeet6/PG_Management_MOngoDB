@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,6 @@ namespace PG_Management_MongoDB.Controllers
         {
             return View(_tenantServices.Get());
         }
-
-        // GET: Tenants/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Tenants/Create
         public ActionResult Create()
         {
             return View();
@@ -132,20 +125,35 @@ namespace PG_Management_MongoDB.Controllers
         }
 
         // GET: Tenants/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var tenant = _tenantServices.Get(id.ToString());
+            if(tenant==null)
+            {
+                return NotFound();
+            }
+            return View(tenant);
         }
 
         // POST: Tenants/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, Tenant tenant)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                if (id!=null)
+                {
+                    _tenantServices.Remove(tenant);
+                }
+                else
+                {
+                    return BadRequest();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch

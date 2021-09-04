@@ -1,0 +1,42 @@
+@model PG_Management_MongoDB.Models.Tenant
+
+@{
+    ViewBag.Title = "Delete Tenant";
+    Layout = "_Layout";
+}
+<h2>Delete Existing Tenant</h2>
+
+
+@using (Html.BeginForm("Delete", "Tenants",FormMethod.Post))
+{   
+    <div style="text-align: center;">
+        <div>
+            @Html.LabelFor(tenant => tenant.Name)
+        </div>
+        <div>
+            @Html.TextBoxFor(tenant => tenant.Name, new { @readonly = "readonly" })
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.Phone)
+        </div>
+        <div>
+            @Html.TextBoxFor(tenant => tenant.Phone, new { @readonly = "readonly" })
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.Address)
+        </div>
+        <div>
+            @Html.TextAreaFor(tenant => tenant.Address, new { @readonly = "readonly" })
+        </div>
+        <div>
+            @Html.LabelFor(tenant => tenant.PaidStatus)
+        </div>
+        <div>
+            @foreach (var value in Tenant.PaidStatusValues)
+            {
+                @Html.RadioButtonFor(tenant => tenant.PaidStatusValue,value, new { @readonly = "readonly" }) @value <br/>
+            }
+        </div>
+        <input type="submit" value="Delete Tenant" id="btnSubmit" />
+    </div>
+}
