@@ -5,7 +5,7 @@
     Layout = "_Layout";
 }
 <h2>Delete Existing Tenant</h2>
-
+<p><h3>"Are you sure you want to delete this tenant?"</h3></p>
 
 @using (Html.BeginForm("Delete", "Tenants",FormMethod.Post))
 {   
@@ -14,29 +14,27 @@
             @Html.LabelFor(tenant => tenant.Name)
         </div>
         <div>
-            @Html.TextBoxFor(tenant => tenant.Name, new { @readonly = "readonly" })
+            @Html.DisplayFor(tenant => tenant.Name, new { @readonly = "readonly" })
         </div>
         <div>
             @Html.LabelFor(tenant => tenant.Phone)
         </div>
         <div>
-            @Html.TextBoxFor(tenant => tenant.Phone, new { @readonly = "readonly" })
+            @Html.DisplayFor(tenant => tenant.Phone, new { @readonly = "readonly" })
         </div>
         <div>
             @Html.LabelFor(tenant => tenant.Address)
         </div>
         <div>
-            @Html.TextAreaFor(tenant => tenant.Address, new { @readonly = "readonly" })
+            @Html.DisplayFor(tenant => tenant.Address, new { @readonly = "readonly" })
         </div>
         <div>
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
         <div>
-            @foreach (var value in Tenant.PaidStatusValues)
-            {
-                @Html.RadioButtonFor(tenant => tenant.PaidStatusValue,value, new { @readonly = "readonly" }) @value <br/>
-            }
+            @Html.DisplayFor(tenant => tenant.PaidStatus.AsBoolean)
         </div>
         <input type="submit" value="Delete Tenant" id="btnSubmit" />
+        <input type="submit" name="Cancel" value="Cancel" formaction=@Url.Action("Cancel") formmethod="post" />
     </div>
 }

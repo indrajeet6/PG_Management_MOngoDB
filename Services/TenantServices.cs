@@ -23,7 +23,7 @@ namespace PG_Management_MongoDB.Services
 
         public Tenant Get(string id)
         {
-            return _tenants.Find(car => car.Id == id).FirstOrDefault();
+            return _tenants.Find(tenant => tenant.Id == id).FirstOrDefault();
         }
 
         public Tenant Create(Tenant tenant)

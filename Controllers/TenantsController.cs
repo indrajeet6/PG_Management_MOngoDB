@@ -23,9 +23,15 @@ namespace PG_Management_MongoDB.Controllers
         {
             return View(_tenantServices.Get());
         }
-        public ActionResult Create()
+        [HttpGet]
+        public IActionResult Details(string id)
         {
-            return View();
+            if(id!=null)
+            {
+                Tenant tenant= _tenantServices.Get(id);
+                return View(tenant);
+            }
+            return NotFound();
         }
 
         // POST: Tenants/Create
@@ -83,7 +89,7 @@ namespace PG_Management_MongoDB.Controllers
         // POST: Tenants/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, Tenant tenant)
+        public IActionResult Edit(string id, Tenant tenant)
         {
             try
             {
@@ -108,7 +114,7 @@ namespace PG_Management_MongoDB.Controllers
                     {
                         tenant.PaidStatus = false;
                     }
-                    _tenantServices.Update(id.ToString(),tenant);
+                    _tenantServices.Update(id,tenant);
                     return RedirectToAction(nameof(Index));
                 }
                 else
@@ -125,7 +131,7 @@ namespace PG_Management_MongoDB.Controllers
         }
 
         // GET: Tenants/Delete/5
-        public ActionResult Delete(string id)
+        public IActionResult Delete(string id)
         {
             if(id==null)
             {
@@ -138,11 +144,24 @@ namespace PG_Management_MongoDB.Controllers
             }
             return View(tenant);
         }
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public IActionResult Cancel()
+        // {
+        //     return RedirectToAction(nameof(Index));
+        // }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Cancel(string id,Tenant tenant)
+        {
+            return RedirectToAction(nameof(Index));
+        }
 
         // POST: Tenants/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, Tenant tenant)
+        public IActionResult Delete(string id, Tenant tenant)
         {
             try
             {

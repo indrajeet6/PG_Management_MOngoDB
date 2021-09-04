@@ -9,34 +9,58 @@
 
 @using (Html.BeginForm("Create", "Tenants",FormMethod.Post))
 {   
-    <div style="text-align: center;">
-        <div>
-            @Html.LabelFor(tenant => tenant.Name)
+    <div class="row">
+        <div class="col-6" style="text-align:center;">
+            <div>
+                @Html.LabelFor(tenant => tenant.Name)
+            </div>
+            <div>
+                @Html.TextBoxFor(tenant => tenant.Name)
+            </div>
+            <div>
+                @Html.LabelFor(tenant => tenant.Phone)
+            </div>
+            <div>
+                @Html.TextBoxFor(tenant => tenant.Phone)
+            </div>
+            <div>
+                @Html.LabelFor(tenant => tenant.Address)
+            </div>
+            <div>
+                @Html.TextAreaFor(tenant => tenant.Address)
+            </div>
+            
         </div>
-        <div>
-            @Html.TextBoxFor(tenant => tenant.Name)
+        <div class="col-6" style="text-align: center;">
+            <div>
+                @Html.LabelFor(tenant => tenant.ParentName)
+            </div>
+            <div>
+                @Html.TextBoxFor(tenant => tenant.ParentName)
+            </div>
+            <div>
+                @Html.LabelFor(tenant => tenant.ParentAddress)
+            </div>
+            <div>
+                @Html.TextAreaFor(tenant => tenant.ParentAddress)
+            </div>
+            <div>
+                @Html.LabelFor(tenant => tenant.ParentPhone)
+            </div>
+            <div>
+                @Html.TextBoxFor(tenant => tenant.ParentPhone)
+            </div>
         </div>
-        <div>
-            @Html.LabelFor(tenant => tenant.Phone)
-        </div>
-        <div>
-            @Html.TextBoxFor(tenant => tenant.Phone)
-        </div>
-        <div>
-            @Html.LabelFor(tenant => tenant.Address)
-        </div>
-        <div>
-            @Html.TextAreaFor(tenant => tenant.Address)
-        </div>
-        <div>
+        <div class="col-12" style="text-align: center;">
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
-        <div>
-            @foreach (var value in Tenant.PaidStatusValues)
-            {
-                @Html.RadioButtonFor(tenant => tenant.PaidStatusValue,value) @value <br/>
-            }
-        </div>
-        <input type="submit" value="Add Tenant" id="btnSubmit" />
+        <div class="col-12" style="text-align: center;">
+                @foreach (var value in Tenant.PaidStatusValues)
+                {
+                    @Html.RadioButtonFor(tenant => tenant.PaidStatusValue,value) @value <br/>
+                }
+                <input type="submit" value="Add Tenant" id="btnSubmit" />
+                <input type="submit" name="Cancel" value="Cancel" formaction=@Url.Action("Cancel") formmethod="post" />
+            </div>
     </div>
 }

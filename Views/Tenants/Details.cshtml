@@ -15,19 +15,19 @@
                 @Html.LabelFor(tenant => tenant.Name)
             </div>
             <div>
-                @Html.TextBoxFor(tenant => tenant.Name)
+                @Html.DisplayFor(tenant => tenant.Name)
             </div>
             <div>
                 @Html.LabelFor(tenant => tenant.Phone)
             </div>
             <div>
-                @Html.TextBoxFor(tenant => tenant.Phone)
+                @Html.DisplayFor(tenant => tenant.Phone)
             </div>
             <div>
                 @Html.LabelFor(tenant => tenant.Address)
             </div>
             <div>
-                @Html.TextAreaFor(tenant => tenant.Address)
+                @Html.DisplayFor(tenant => tenant.Address)
             </div>
             
         </div>
@@ -36,31 +36,27 @@
                 @Html.LabelFor(tenant => tenant.ParentName)
             </div>
             <div>
-                @Html.TextBoxFor(tenant => tenant.ParentName)
+                @Html.DisplayFor(tenant => tenant.ParentName)
             </div>
             <div>
                 @Html.LabelFor(tenant => tenant.ParentAddress)
             </div>
             <div>
-                @Html.TextAreaFor(tenant => tenant.ParentAddress)
+                @Html.DisplayFor(tenant => tenant.ParentAddress)
             </div>
             <div>
                 @Html.LabelFor(tenant => tenant.ParentPhone)
             </div>
             <div>
-                @Html.TextBoxFor(tenant => tenant.ParentPhone)
+                @Html.DisplayFor(tenant => tenant.ParentPhone)
             </div>
         </div>
         <div class="col-12" style="text-align: center;">
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
         <div class="col-12" style="text-align: center;">
-                @foreach (var value in Tenant.PaidStatusValues)
-                {
-                    @Html.RadioButtonFor(tenant => tenant.PaidStatusValue,value) @value <br/>
-                }
-                <input type="submit" value="Modify Existing Tenant" id="btnSubmit" />
-                <input type="submit" name="Cancel" value="Cancel" formaction=@Url.Action("Cancel") formmethod="post" />
+            @Html.DisplayFor(tenant => tenant.PaidStatus.AsBoolean)
+            <input type="submit" name="Cancel" value="Back To All Tenants" formaction=@Url.Action("Cancel") formmethod="post" />
         </div>
     </div>
 }
