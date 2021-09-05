@@ -24,6 +24,9 @@
                 @Html.DisplayNameFor(tenant => tenant.Address)
             </th>
             <th>
+                @Html.DisplayNameFor(tenant => tenant.Rent)
+            </th>
+            <th>
                 @Html.DisplayNameFor(tenant => tenant.PaidStatus)
             </th>
             <th></th>
@@ -40,6 +43,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(tenant => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(tenant => item.Rent)
                 </td>
                 <td>
                     @Html.DisplayFor(tenant => item.PaidStatus.AsBoolean)

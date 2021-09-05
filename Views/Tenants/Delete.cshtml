@@ -29,6 +29,12 @@
             @Html.TextBoxFor(tenant => tenant.Address,new {@readonly = "reeadonly"})
         </div>
         <div>
+            @Html.LabelFor(tenant => tenant.Rent)
+        </div>
+        <div>
+            @Html.TextAreaFor(tenant => tenant.Rent, new {@readonly = "reeadonly"})
+        </div>
+        <div>
             @Html.LabelFor(tenant => tenant.PaidStatus)
         </div>
         <div>

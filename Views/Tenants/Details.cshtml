@@ -15,19 +15,25 @@
                 @Html.LabelFor(tenant => tenant.Name)
             </div>
             <div>
-                @Html.DisplayFor(tenant => tenant.Name)
+                @Html.TextBoxFor(tenant => tenant.Name, new{@readonly = "readonly"})
             </div>
             <div>
                 @Html.LabelFor(tenant => tenant.Phone)
             </div>
             <div>
-                @Html.DisplayFor(tenant => tenant.Phone)
+                @Html.TextBoxFor(tenant => tenant.Phone, new{@readonly = "readonly"})
             </div>
             <div>
                 @Html.LabelFor(tenant => tenant.Address)
             </div>
             <div>
-                @Html.DisplayFor(tenant => tenant.Address)
+                @Html.TextBoxFor(tenant => tenant.Address, new{@readonly = "readonly"})
+            </div>
+            <div>
+                @Html.LabelFor(tenant => tenant.Rent)
+            </div>
+            <div>
+                @Html.TextBoxFor(tenant => tenant.Rent, new{@readonly = "readonly"})
             </div>
             
         </div>
