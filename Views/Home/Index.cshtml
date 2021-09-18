@@ -1,8 +1,48 @@
-﻿@{
+﻿@using System.Globalization
+@model IEnumerable<PG_Management_MongoDB.Models.Tenant>
+@{
     ViewData["Title"] = "PG Management System";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome To PG Management System</h1>
     <p>This System has been created by Indrajeet Roy.</a>.</p>
+</div>
+<div style="text-align: center;">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(tenant => tenant.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(tenant => tenant.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(tenant => tenant.Rent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(tenant => tenant.PaidStatus)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(tenant => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(tenant => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(tenant => item.Rent)
+                </td>
+                <td>
+                    @Html.DisplayFor(tenant => item.PaidStatus.AsBoolean)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>

@@ -1,6 +1,9 @@
+using System.Globalization;
+using System.Reflection;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using PG_Management_MongoDB.Models;
 
 namespace PG_Management_MongoDB.Services
@@ -24,6 +27,12 @@ namespace PG_Management_MongoDB.Services
         public Tenant Get(string id)
         {
             return _tenants.Find(tenant => tenant.Id == id).FirstOrDefault();
+        }
+        public List<Tenant> GetUnpaid()
+        {
+
+            var unPaid = _tenants.AsQueryable<Tenant>().Where(tenant => tenant.PaidStatus==false);
+            return unPaid.ToList();
         }
 
         public Tenant Create(Tenant tenant)
