@@ -19,7 +19,7 @@ namespace PG_Management_MongoDB.Controllers
             _logger = logger;
             this._tenantServices = _tenantServices;
         }
-
+        
         public IActionResult Index()
         {
             return View(_tenantServices.GetUnpaid());
