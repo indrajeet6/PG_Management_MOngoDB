@@ -33,7 +33,12 @@ namespace PG_Management_MongoDB.Controllers
             }
             return NotFound();
         }
-
+        //GET: Tenants/Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
         // POST: Tenants/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
